@@ -7,19 +7,13 @@ export default function LessonPage() {
   const navigate = useNavigate();
   const [lesson, setLesson] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getLesson(id)
-      .then(setLesson)
-      .catch(() => setError('Lesson not found.'))
-      .finally(() => setLoading(false));
+    getLesson(id).then(setLesson).catch(() => {}).finally(() => setLoading(false));
   }, [id]);
 
   if (loading) return <div className="page-center"><div className="spinner" /></div>;
-  if (error) return <div className="page-center error-msg">{error}</div>;
-
-  const paragraphs = lesson.content.split('\n\n').filter(Boolean);
+  if (!lesson) return <div className="page-center error-msg">Lesson not found.</div>;
 
   return (
     <div className="page lesson-page">
@@ -29,23 +23,17 @@ export default function LessonPage() {
       </div>
 
       <div className="lesson-content">
-        {paragraphs.map((para, i) => (
+        {lesson.content.split('\n\n').map((para, i) => (
           <p key={i} className="lesson-paragraph">{para}</p>
         ))}
       </div>
 
       <div className="lesson-actions">
-        <button
-          className="action-btn quiz-btn"
-          onClick={() => navigate(`/lesson/${id}/quiz`)}
-        >
+        <button className="action-btn quiz-btn" onClick={() => navigate(`/lesson/${id}/quiz`)}>
           📝 Take Quiz
         </button>
-        <button
-          className="action-btn game-btn"
-          onClick={() => navigate(`/lesson/${id}/minigame`)}
-        >
-          🎴 Play Flashcards
+        <button className="action-btn game-btn" onClick={() => navigate(`/lesson/${id}/minigame`)}>
+          🃏 Flashcards
         </button>
       </div>
     </div>

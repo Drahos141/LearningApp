@@ -21,10 +21,8 @@ export default function Dashboard() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <div className="header-content">
-          <h1 className="app-title">🎓 LearningApp</h1>
-          <p className="app-subtitle">Choose a topic and start learning today</p>
-        </div>
+        <h1 className="app-title">LearningApp</h1>
+        <p className="app-subtitle">Choose a topic and start learning today</p>
       </header>
 
       <main className="dashboard-main">
@@ -32,19 +30,26 @@ export default function Dashboard() {
         <div className="cards-grid">
           {categories.map(cat => (
             <button
-              key={cat.id}
+              key={cat._id || cat.id}
               className="category-card"
-              style={{ '--accent': cat.color }}
-              onClick={() => navigate(`/category/${cat.id}`)}
+              onClick={() => navigate(`/category/${cat._id || cat.id}`)}
             >
               <span className="card-icon">{cat.icon}</span>
               <h3 className="card-title">{cat.name}</h3>
               <p className="card-desc">{cat.description}</p>
-              <span className="card-meta">
-                {cat.subcategories.length} subcategories
-              </span>
+              <span className="card-meta">{cat.subcategories?.length ?? 0} subcategories</span>
             </button>
           ))}
+        </div>
+
+        <div className="games-featured">
+          <div>
+            <h2>🧩 Logical Games</h2>
+            <p>20 brain-training games — memory, logic, math, patterns, and more</p>
+          </div>
+          <button className="games-btn" onClick={() => navigate('/games')}>
+            Play Now →
+          </button>
         </div>
       </main>
     </div>
