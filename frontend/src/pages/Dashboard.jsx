@@ -45,7 +45,7 @@ export default function Dashboard() {
         <div className="games-featured">
           <div>
             <h2>🧩 Logical Games</h2>
-            <p>20 brain-training games — memory, logic, math, patterns, and more</p>
+            <p>30 brain-training games — IQ tests, memory, logic, math, patterns, and more</p>
           </div>
           <button className="games-btn" onClick={() => navigate('/games')}>
             Play Now →

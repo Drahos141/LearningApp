@@ -1,25 +1,42 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 const QUESTIONS = [
-  { seq: [2, 4, null, 8, 10], answer: 6 },
-  { seq: [1, 3, 6, 10, null], answer: 15 },
-  { seq: [5, 10, 15, null, 25], answer: 20 },
-  { seq: [1, 4, 9, 16, null], answer: 25 },
-  { seq: [2, 6, 18, null, 162], answer: 54 },
-  { seq: [100, 90, 80, null, 60], answer: 70 },
-  { seq: [3, 6, 12, null, 48], answer: 24 },
-  { seq: [1, 1, 2, 3, 5, null], answer: 8 },
-  { seq: [64, 32, 16, null, 4], answer: 8 },
-  { seq: [7, 14, 21, null, 35], answer: 28 },
+  { seq: [2, 5, 8, 11, null, 17], answer: 14,
+    explanation: 'Add 3 each time: 2, 5, 8, 11, 14, 17 (+3 every step).' },
+  { seq: [3, 6, 12, 24, null, 96], answer: 48,
+    explanation: 'Multiply by 2 each time: 3×2=6, 6×2=12, 12×2=24, 24×2=48.' },
+  { seq: [1, 4, 9, 16, 25, null], answer: 36,
+    explanation: 'Perfect squares: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25, 6²=36.' },
+  { seq: [1, 1, 2, 3, 5, 8, null], answer: 13,
+    explanation: 'Fibonacci: each number = sum of two before it. 5+8=13.' },
+  { seq: [100, 95, 85, 70, null], answer: 50,
+    explanation: 'Subtract 5, 10, 15, 20… (differences increase by 5). 70−20=50.' },
+  { seq: [1, 8, 27, 64, null], answer: 125,
+    explanation: 'Perfect cubes: 1³=1, 2³=8, 3³=27, 4³=64, 5³=125.' },
+  { seq: [2, 3, 5, 7, 11, null], answer: 13,
+    explanation: 'Prime numbers in order: 2, 3, 5, 7, 11, 13.' },
+  { seq: [1, 2, 4, 7, 11, null], answer: 16,
+    explanation: 'Differences increase by 1: +1, +2, +3, +4, +5. So 11+5=16.' },
+  { seq: [3, 5, 9, 15, 23, null], answer: 33,
+    explanation: 'Differences increase by 2: +2, +4, +6, +8, +10. So 23+10=33.' },
+  { seq: [2, 6, 18, 54, null], answer: 162,
+    explanation: 'Multiply by 3 each time: 2×3=6, 6×3=18, 18×3=54, 54×3=162.' },
 ];
 
 function makeOptions(answer) {
-  const opts = [answer];
-  while (opts.length < 4) {
-    const v = answer + (Math.floor(Math.random() * 20) - 10);
-    if (!opts.includes(v) && v > 0) opts.push(v);
+  const set = new Set([answer]);
+  const candidates = [
+    answer + 1, answer - 1, answer + 2, answer - 2,
+    answer + 3, answer - 3, answer + 5, answer - 5,
+    answer + 7, answer - 7, answer + 10, answer - 10,
+    Math.round(answer * 1.5), Math.round(answer * 0.5),
+  ].filter(v => v > 0 && !set.has(v));
+  const shuffled = candidates.sort(() => Math.random() - 0.5);
+  for (const c of shuffled) {
+    if (set.size >= 4) break;
+    set.add(c);
   }
-  return opts.sort(() => Math.random() - 0.5);
+  return [...set].sort(() => Math.random() - 0.5);
 }
 
 export default function NumberSequence() {
@@ -27,7 +44,7 @@ export default function NumberSequence() {
   const [score, setScore] = useState(0);
   const [chosen, setChosen] = useState(null);
   const [done, setDone] = useState(false);
-  const [opts] = useState(() => QUESTIONS.map(q => makeOptions(q.answer)));
+  const opts = useMemo(() => QUESTIONS.map(q => makeOptions(q.answer)), []);
 
   const q = QUESTIONS[idx];
 
@@ -48,17 +65,35 @@ export default function NumberSequence() {
       <div style={{ fontSize: '3rem' }}>🔢</div>
       <h2>Score: {score} / {QUESTIONS.length}</h2>
       <p>You found {score} missing numbers correctly!</p>
-      <button className="play-btn" style={{ marginTop: '1.5rem' }} onClick={() => { setIdx(0); setScore(0); setChosen(null); setDone(false); }}>Play Again</button>
+      <button className="play-btn" style={{ marginTop: '1.5rem' }}
+        onClick={() => { setIdx(0); setScore(0); setChosen(null); setDone(false); }}>
+        Play Again
+      </button>
     </div>
   );
 
   return (
     <div>
-      <div className="game-score-bar"><span>Question {idx + 1} / {QUESTIONS.length}</span><span>Score: {score}</span></div>
+      <div className="game-score-bar">
+        <span>Question {idx + 1} / {QUESTIONS.length}</span>
+        <span>Score: {score}</span>
+      </div>
       <div style={{ background: '#f8f8f8', border: '1px solid #e0e0e0', borderRadius: '12px', padding: '2rem', marginBottom: '1.5rem' }}>
-        <div style={{ fontSize: '0.8rem', color: '#6b6b6b', marginBottom: '0.75rem', fontWeight: 600 }}>FIND THE MISSING NUMBER</div>
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', fontSize: '1.5rem', fontWeight: 700 }}>
-          {q.seq.map((n, i) => <span key={i} style={{ minWidth: '2.5rem', textAlign: 'center', padding: '0.5rem', border: '2px solid', borderColor: n === null ? '#0a0a0a' : '#e0e0e0', borderRadius: '8px', background: n === null ? '#0a0a0a' : '#fff', color: n === null ? '#fff' : '#0a0a0a' }}>{n === null ? '?' : n}</span>)}
+        <div style={{ fontSize: '0.8rem', color: '#6b6b6b', marginBottom: '0.75rem', fontWeight: 600 }}>
+          FIND THE MISSING NUMBER
+        </div>
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap', fontSize: '1.5rem', fontWeight: 700 }}>
+          {q.seq.map((n, i) => (
+            <span key={i} style={{
+              minWidth: '3rem', textAlign: 'center', padding: '0.5rem 0.75rem',
+              border: '2px solid', borderRadius: '8px',
+              borderColor: n === null ? '#0a0a0a' : '#e0e0e0',
+              background: n === null ? '#0a0a0a' : '#fff',
+              color: n === null ? '#fff' : '#0a0a0a'
+            }}>
+              {n === null ? '?' : n}
+            </span>
+          ))}
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
@@ -69,11 +104,27 @@ export default function NumberSequence() {
             else if (v === chosen) { bg = '#fef2f2'; borderColor = '#dc2626'; color = '#991b1b'; }
           }
           return (
-            <button key={v} onClick={() => pick(v)} style={{ padding: '1rem', border: `1px solid ${borderColor}`, borderRadius: '10px', background: bg, color, fontSize: '1.2rem', fontWeight: 700 }}>{v}</button>
+            <button key={v} onClick={() => pick(v)} disabled={chosen !== null}
+              style={{ padding: '1rem', border: `1px solid ${borderColor}`, borderRadius: '10px', background: bg, color, fontSize: '1.2rem', fontWeight: 700 }}>
+              {v}
+            </button>
           );
         })}
       </div>
-      {chosen !== null && <button className="next-btn" style={{ marginTop: '1.5rem' }} onClick={next}>{idx + 1 >= QUESTIONS.length ? 'See Results' : 'Next →'}</button>}
+      {chosen !== null && (
+        <div style={{ marginTop: '1rem', padding: '1rem', borderRadius: '10px',
+          background: chosen === q.answer ? '#f0fdf4' : '#fef2f2',
+          borderLeft: `4px solid ${chosen === q.answer ? '#16a34a' : '#dc2626'}`,
+          color: chosen === q.answer ? '#166534' : '#991b1b', fontSize: '0.9rem' }}>
+          <strong>{chosen === q.answer ? '✓ Correct!' : `✗ The answer is ${q.answer}.`}</strong>
+          {' '}{q.explanation}
+        </div>
+      )}
+      {chosen !== null && (
+        <button className="next-btn" style={{ marginTop: '1rem' }} onClick={next}>
+          {idx + 1 >= QUESTIONS.length ? 'See Results' : 'Next →'}
+        </button>
+      )}
     </div>
   );
 }

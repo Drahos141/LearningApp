@@ -28,8 +28,12 @@ export default function QuizPage() {
     const pct = Math.round((score / questions.length) * 100);
     const emoji = pct >= 80 ? '🎉' : pct >= 50 ? '👍' : '📚';
     return (
+
       <div className="page quiz-page">
-        <button className="back-btn" onClick={() => navigate(`/lesson/${id}`)}>← Back to Lesson</button>
+        <div className="nav-row">
+          <button className="home-btn" onClick={() => navigate('/')}>🏠 Home</button>
+          <button className="back-btn" onClick={() => navigate(`/lesson/${id}`)}>← Back to Lesson</button>
+        </div>
         <div className="quiz-result">
           <div className="result-emoji">{emoji}</div>
           <h2>{pct >= 80 ? 'Excellent!' : pct >= 50 ? 'Good job!' : 'Keep studying!'}</h2>
@@ -59,7 +63,10 @@ export default function QuizPage() {
   return (
     <div className="page quiz-page">
       <div className="quiz-header">
-        <button className="back-btn" onClick={() => navigate(`/lesson/${id}`)}>← Back</button>
+        <div className="nav-row" style={{ marginBottom: 0 }}>
+          <button className="home-btn" onClick={() => navigate('/')}>🏠 Home</button>
+          <button className="back-btn" onClick={() => navigate(`/lesson/${id}`)}>← Back</button>
+        </div>
         <span className="quiz-counter">Question {qIdx + 1} of {questions.length}</span>
       </div>
       <div className="progress-bar">

@@ -25,10 +25,13 @@ export default function GamesHub() {
     <div className="games-hub">
       <header className="games-hub-header">
         <h1>🧩 Logical Games</h1>
-        <p>Train your brain with 20 interactive games</p>
+        <p>Train your brain with 30 interactive games</p>
       </header>
       <main className="games-hub-main">
-        <button className="back-btn" onClick={() => navigate('/')}>← Back</button>
+        <div className="nav-row">
+          <button className="home-btn" onClick={() => navigate('/')}>🏠 Home</button>
+          <button className="back-btn" onClick={() => navigate('/')}>← Back</button>
+        </div>
 
         <div className="filter-bar">
           {FILTERS.map(f => (
