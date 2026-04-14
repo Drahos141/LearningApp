@@ -16,6 +16,8 @@ const LessonSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
   title: String,
   content: String,
+  additionalInfo: String,
+  deepDive: String,
   order: Number,
   depths: [String],
   quiz: { questions: [QuestionSchema] },
