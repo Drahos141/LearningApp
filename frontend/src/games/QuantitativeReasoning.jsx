@@ -8,7 +8,7 @@ const QUESTIONS = [
   { q: 'A shirt costs $80, discounted by 25%. What is the sale price?', answer: 60, options: [55,60,65,70], exp: '25% of $80 = $20. $80 − $20 = $60.' },
   { q: 'What percentage of 200 is 50?', answer: 25, options: [10,20,25,40], exp: '50 ÷ 200 × 100 = 25%.' },
   { q: 'A car depreciates 20% per year. Worth $10,000 now. Value after 2 years?', answer: 6400, options: [6000,6400,7000,8000], exp: 'Year 1: 10000 × 0.8 = 8000. Year 2: 8000 × 0.8 = 6400.' },
-  { q: 'A rectangle is 8m × 5m. A square has the same area. What is the square\'s side?', answer: 6, options: [5,6,7,8], exp: 'Area = 40m². Side = √40 ≈ 6.32 → rounded to nearest whole, closest is 6. (Accept: 6 as approximation, exact: √40≈6.32)' },
+  { q: 'A rectangle is 8m × 2m. A square has the same area (16m²). What is the square\'s side length?', answer: 4, options: [3,4,5,8], exp: 'Area = 8×2 = 16m². Side of square = √16 = 4m (exact whole number).' },
   { q: 'If A > B and B > C, and C = 5, which could be a valid set of values?', answer: 'A=9, B=7, C=5', options: ['A=3, B=7, C=5','A=9, B=4, C=5','A=9, B=7, C=5','A=5, B=7, C=9'], exp: 'We need A>B>C=5. A=9>B=7>C=5 is valid.' },
   { q: 'A clock shows 3:00. What is the angle between the hands?', answer: 90, options: [45,60,90,120], exp: 'At 3:00, the minute hand is at 12 and hour hand at 3 — exactly one quarter of 360° = 90°.' },
   { q: 'A shop sells 60 items at $3 profit each. How much total profit to sell 75% of items?', answer: 135, options: [120,135,150,180], exp: '75% of 60 = 45 items. 45 × $3 = $135 profit.' },
