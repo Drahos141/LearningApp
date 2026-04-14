@@ -148,7 +148,7 @@ export default function LessonPage() {
         <button className="action-btn quiz-btn" onClick={() => navigate(`/lesson/${id}/quiz`)}>
           📝 Take Quiz
         </button>
-        <button className="action-btn game-btn" onClick={() => navigate('/lesson/' + id + '/minigame')}>
+        <button className="action-btn game-btn" onClick={() => navigate(`/lesson/${id}/minigame`)}>
           🃏 Flashcards
         </button>
       </div>
