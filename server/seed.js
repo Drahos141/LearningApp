@@ -2,12 +2,14 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Category = require('./models/Category');
 const Game = require('./models/Game');
+const lessonsAdditional = require('./lessonsAdditional');
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/learningapp';
 
 function lesson(id, subId, order, title, content, questions, flashcards, additionalInfo, deepDive) {
+  const extra = lessonsAdditional[id] || {};
   return { _id: id, order, title, content,
-    additionalInfo: additionalInfo || null,
-    deepDive: deepDive || null,
+    additionalInfo: additionalInfo || extra.additionalInfo || null,
+    deepDive: deepDive || extra.deepDive || null,
     quiz: { questions: questions.map(([text, options, correctIndex, explanation]) => ({ text, options, correctIndex, explanation })) },
     flashcards: flashcards.map(([front, back]) => ({ front, back }))
   };
