@@ -24,7 +24,10 @@ export default function MiniGamePage() {
 
   return (
     <div className="page minigame-page">
-      <button className="back-btn" onClick={() => navigate(`/lesson/${id}`)}>← Back to Lesson</button>
+      <div className="nav-row">
+        <button className="home-btn" onClick={() => navigate('/')}>🏠 Home</button>
+        <button className="back-btn" onClick={() => navigate(`/lesson/${id}`)}>← Back to Lesson</button>
+      </div>
       <h1 className="minigame-title">Flashcards</h1>
       <p className="minigame-hint">Click the card to reveal the definition</p>
 

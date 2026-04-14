@@ -18,7 +18,10 @@ export default function CategoryPage() {
   return (
     <div className="page">
       <div className="page-header">
-        <button className="back-btn" onClick={() => navigate('/')}>← Back</button>
+        <div className="nav-row">
+          <button className="home-btn" onClick={() => navigate('/')}>🏠 Home</button>
+          <button className="back-btn" onClick={() => navigate('/')}>← Back</button>
+        </div>
         <div className="page-icon">{category.icon}</div>
         <h1 style={{ fontSize: '1.9rem', fontWeight: 800, marginTop: '0.5rem' }}>{category.name}</h1>
         <p className="page-subtitle">{category.description}</p>

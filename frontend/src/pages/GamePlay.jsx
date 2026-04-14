@@ -22,6 +22,17 @@ import ColorMemory from '../games/ColorMemory';
 import MatrixPattern from '../games/MatrixPattern';
 import SpeedMath from '../games/SpeedMath';
 import SpatialBlocks from '../games/SpatialBlocks';
+import AnalogySolver from '../games/AnalogySolver';
+import SeriesCompletion from '../games/SeriesCompletion';
+import SyllogismChallenge from '../games/SyllogismChallenge';
+import MissingPiece from '../games/MissingPiece';
+import LogicalDeduction from '../games/LogicalDeduction';
+import AbstractReasoning from '../games/AbstractReasoning';
+import QuantitativeReasoning from '../games/QuantitativeReasoning';
+import VisualSequence from '../games/VisualSequence';
+import CriticalThinking from '../games/CriticalThinking';
+import CodeBreaker from '../games/CodeBreaker';
+import SpatialReasoning from '../games/SpatialReasoning';
 
 const GAME_COMPONENTS = {
   'memory-cards': MemoryCards,
@@ -44,6 +55,17 @@ const GAME_COMPONENTS = {
   'matrix-pattern': MatrixPattern,
   'speed-math': SpeedMath,
   'spatial-blocks': SpatialBlocks,
+  'analogy-solver': AnalogySolver,
+  'series-completion': SeriesCompletion,
+  'syllogism-challenge': SyllogismChallenge,
+  'missing-piece': MissingPiece,
+  'logical-deduction': LogicalDeduction,
+  'abstract-reasoning': AbstractReasoning,
+  'quantitative-reasoning': QuantitativeReasoning,
+  'visual-sequence': VisualSequence,
+  'critical-thinking': CriticalThinking,
+  'code-breaker': CodeBreaker,
+  'spatial-reasoning': SpatialReasoning,
 };
 
 export default function GamePlay() {
@@ -66,7 +88,10 @@ export default function GamePlay() {
   return (
     <div className="gameplay">
       <div className="gameplay-header">
-        <button className="back-btn" onClick={() => navigate('/games')}>← Back to Games</button>
+        <div className="nav-row">
+          <button className="home-btn" onClick={() => navigate('/')}>🏠 Home</button>
+          <button className="back-btn" onClick={() => navigate('/games')}>← Back to Games</button>
+        </div>
         <h1 className="gameplay-title">{game?.name ?? slug}</h1>
         {game?.description && <p className="gameplay-desc">{game.description}</p>}
         <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
