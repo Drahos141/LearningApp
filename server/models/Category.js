@@ -17,6 +17,7 @@ const LessonSchema = new mongoose.Schema({
   title: String,
   content: String,
   order: Number,
+  depths: [String],
   quiz: { questions: [QuestionSchema] },
   flashcards: [FlashcardSchema]
 });
