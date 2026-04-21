@@ -5,8 +5,8 @@ A full-stack learning platform with a React frontend and C# ASP.NET Core backend
 ## Features
 
 - **7 Learning Categories**: IT, Programming, Languages, Networking, AI & ML, Soft Skills, Hardware
-- **14 Subcategories** with 2 lessons each (28 lessons total)
-- **Quizzes**: 3 multiple-choice questions per lesson with explanations
+- **14 Subcategories** with 3 lessons each (42 lessons total)
+- **Quizzes**: 3 multiple-choice questions per lesson with explanations (126 total)
 - **Flashcard Mini-Games**: 5 term-definition flashcards per lesson
 - Clean dark-mode dashboard with category cards
 - Lesson reader, interactive quiz, and flip-card game
