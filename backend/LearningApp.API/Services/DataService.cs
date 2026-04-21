@@ -276,6 +276,44 @@ public class DataService
             }
         };
 
+        var additionalLessons = new Dictionary<int, (string Title, string Content)>
+        {
+            { 1, ("Computer Hardware Components", "Computer hardware is often grouped into four functional areas: processing, memory, storage, and input/output.\n\nProcessing is handled mainly by the CPU, which executes program instructions. Memory is primarily RAM, which stores active data for fast access. Storage includes SSDs and HDDs, which keep data persistently. Input/output devices allow users and external systems to interact with the computer.\n\nPerformance depends on how well these components work together. A powerful CPU can still feel slow if RAM is limited or storage is outdated. Understanding component roles helps users diagnose bottlenecks and plan upgrades effectively.\n\nCommon troubleshooting examples include high disk usage causing system lag, insufficient RAM leading to excessive swapping, and thermal throttling reducing processor speed under load.\n\nWhen building or upgrading systems, users should balance budget with workload needs. Office tasks may prioritize reliability and responsiveness, while gaming and content creation often require stronger CPUs, more RAM, and dedicated GPUs.") },
+            { 2, ("Network Security Fundamentals", "Network security focuses on protecting data as it moves between devices, servers, and services.\n\nCore controls include firewalls, secure network segmentation, intrusion detection, VPNs, and strong authentication. Segmenting networks limits how far an attacker can move after a breach.\n\nZero trust is a modern approach where no user or device is trusted by default, even inside corporate networks. Access is granted only after identity verification, device checks, and policy evaluation.\n\nLogging and monitoring are critical. Security teams analyze unusual traffic patterns, repeated login failures, and suspicious outbound connections to detect active threats early.\n\nPractical protection also includes patching network devices, disabling unused ports, enforcing MFA for remote access, and routinely testing incident response procedures.") },
+            { 3, ("Functions and Modules", "Functions help organize Python code into reusable blocks that perform specific tasks.\n\nA function is defined with def, can accept parameters, and can return values. Clear function names and small responsibilities improve readability and testing.\n\nModules are Python files that group related functions, classes, and constants. You can reuse module code with import statements, which encourages maintainable project structure.\n\nPython also provides standard library modules such as math, datetime, and json, reducing the need to reinvent common functionality.\n\nAs projects grow, separating logic into modules and packages makes collaboration easier, reduces duplication, and supports cleaner dependency boundaries.") },
+            { 4, ("JavaScript Fundamentals", "JavaScript adds behavior and interactivity to web pages.\n\nCore concepts include variables, functions, conditionals, loops, and events. Developers often manipulate page content with the DOM (Document Object Model), responding to user actions like clicks and form input.\n\nModern JavaScript uses features such as let/const, arrow functions, template literals, and modules. Async programming with promises and async/await is essential for API calls and non-blocking UI updates.\n\nUnderstanding event propagation, state updates, and error handling helps prevent common bugs in dynamic interfaces.\n\nA strong front-end foundation combines semantic HTML, maintainable CSS, and JavaScript logic that is readable, testable, and accessible.") },
+            { 5, ("Sentence Structure", "English sentence structure usually follows Subject + Verb + Object order.\n\nSimple sentences contain one independent clause. Compound sentences connect two independent clauses with conjunctions. Complex sentences combine independent and dependent clauses.\n\nCorrect punctuation and conjunction choice affect clarity. Misplaced modifiers or run-on sentences can make writing confusing.\n\nWriters improve structure by varying sentence length, using transitions, and checking whether each sentence communicates one clear idea.\n\nEditing for grammar, punctuation, and flow is a key step in producing professional emails, essays, and reports.") },
+            { 6, ("Common Spanish Verbs", "Spanish verbs are central to daily communication, especially high-frequency verbs like ser, estar, tener, ir, and hacer.\n\nSer and estar both mean 'to be' but are used in different contexts: ser for identity and permanent traits, estar for temporary states and location.\n\nVerb conjugation changes based on the subject pronoun and tense. Learning present-tense forms of common verbs provides a strong conversational base.\n\nUseful phrases include tengo hambre (I am hungry), voy al trabajo (I am going to work), and estamos listos (we are ready).\n\nConsistent speaking practice with common verbs improves fluency much faster than memorizing isolated vocabulary lists.") },
+            { 7, ("Network Topologies", "Network topology describes how devices are arranged and connected.\n\nCommon topologies include star, bus, ring, mesh, and hybrid. Star topology is widely used in modern LANs because it is easier to manage and isolate failures.\n\nMesh networks provide high redundancy because devices have multiple paths, but they are more complex and expensive to deploy.\n\nPhysical topology describes cable layout, while logical topology describes how data flows across the network.\n\nChoosing topology depends on scale, budget, reliability requirements, and expected traffic patterns.") },
+            { 8, ("Application Layer Protocols", "Application layer protocols support user-facing network services.\n\nHTTP/HTTPS transfer web content, DNS resolves domain names to IP addresses, SMTP sends email, and FTP/SFTP handle file transfer.\n\nHTTPS combines HTTP with TLS encryption to protect confidentiality and integrity in transit.\n\nProtocol troubleshooting often involves checking ports, certificates, DNS records, and request/response status codes.\n\nUnderstanding protocol behavior helps engineers diagnose outages faster and design secure, reliable distributed systems.") },
+            { 9, ("Model Evaluation Metrics", "Machine learning metrics measure how well models perform on their tasks.\n\nFor classification, common metrics include accuracy, precision, recall, F1-score, and ROC-AUC. Accuracy alone can be misleading on imbalanced datasets.\n\nFor regression, MAE, MSE, and RMSE quantify prediction error. Lower values indicate better fit, but interpretability and business tolerance matter.\n\nConfusion matrices reveal where classification models make mistakes, guiding threshold tuning and feature improvements.\n\nGood evaluation also includes validation on unseen data and monitoring production performance for drift over time.") },
+            { 10, ("Training Neural Networks Effectively", "Training neural networks requires careful control of optimization and generalization.\n\nKey factors include learning rate, batch size, optimizer choice, and regularization methods like dropout and weight decay.\n\nValidation data is used to detect overfitting and guide early stopping. Data augmentation can improve robustness for vision and speech tasks.\n\nHardware acceleration with GPUs significantly reduces training time for deep models.\n\nSuccessful training pipelines also include experiment tracking, reproducibility practices, and clear model versioning.") },
+            { 11, ("Written Communication at Work", "Written communication is essential for documentation, email, reports, and collaborative planning.\n\nStrong writing is clear, concise, and audience-focused. Messages should state context, purpose, requested action, and deadlines.\n\nStructure improves readability: use informative headings, short paragraphs, and bullet points for key decisions.\n\nTone matters. Professional communication avoids ambiguity and remains respectful, especially in cross-functional or remote teams.\n\nReviewing drafts for clarity and factual accuracy prevents misunderstandings and saves time in later discussions.") },
+            { 12, ("Decision-Making for Leaders", "Leadership includes making timely, well-informed decisions under uncertainty.\n\nEffective decision-making combines data analysis, stakeholder input, risk assessment, and clear prioritization.\n\nFrameworks such as pros/cons matrices, impact-vs-effort grids, and pre-mortems help teams evaluate options objectively.\n\nAfter deciding, leaders communicate rationale, ownership, and success criteria so teams can execute confidently.\n\nStrong leaders also review outcomes, capture lessons learned, and adjust strategy when new evidence appears.") },
+            { 13, ("Power Supply and Cooling", "The power supply unit (PSU) converts wall AC power into stable DC voltages for PC components.\n\nSelecting the right PSU involves sufficient wattage, quality protections, and efficiency certification (such as 80 PLUS ratings).\n\nCooling systems include air coolers, case airflow design, and liquid cooling solutions. Proper airflow direction and dust management are critical for long-term stability.\n\nHigh temperatures can reduce performance through thermal throttling and shorten hardware lifespan.\n\nA reliable build balances performance with thermal and power headroom for future upgrades.") },
+            { 14, ("Data Reliability and Recovery", "Data reliability combines fault tolerance, monitoring, and tested recovery workflows.\n\nSnapshots, replication, and versioned backups reduce risk from accidental changes and system failures. Each method addresses different failure scenarios.\n\nRecovery objectives matter: RPO defines acceptable data loss, while RTO defines acceptable downtime.\n\nOrganizations should routinely test restore procedures, not just backup jobs, to ensure recovery works during real incidents.\n\nA resilient storage strategy includes encryption, access controls, and documented incident playbooks.") }
+        };
+
+        foreach (var category in categories)
+        {
+            foreach (var subcategory in category.Subcategories)
+            {
+                if (!additionalLessons.TryGetValue(subcategory.Id, out var lesson))
+                {
+                    continue;
+                }
+
+                subcategory.Lessons.Add(new Lesson
+                {
+                    Id = lessonId++,
+                    SubcategoryId = subcategory.Id,
+                    Order = subcategory.Lessons.Count + 1,
+                    Title = lesson.Title,
+                    Content = lesson.Content
+                });
+            }
+        }
+
         return categories;
     }
 
@@ -506,6 +544,118 @@ public class DataService
             new() { Id = qId++, Text = "Which RAID level provides no redundancy but maximum performance?", Options = new() { "RAID 1", "RAID 5", "RAID 0", "RAID 10" }, CorrectIndex = 2, Explanation = "RAID 0 (striping) splits data across drives for maximum speed but offers zero redundancy — one drive failure means total data loss." },
             new() { Id = qId++, Text = "What does the 3-2-1 backup rule recommend?", Options = new() { "3 backups on 1 device updated 2 times daily", "3 copies, 2 media types, 1 offsite copy", "3 servers, 2 locations, 1 cloud provider", "Backup 3 times daily to 2 locations using 1 tool" }, CorrectIndex = 1, Explanation = "The 3-2-1 rule: keep 3 copies of data on 2 different media types with 1 copy stored offsite for disaster recovery." },
             new() { Id = qId++, Text = "Is RAID a substitute for backups?", Options = new() { "Yes, RAID 1 protects against all data loss", "Yes, any RAID level is sufficient", "No, RAID protects against hardware failure but not deletion or ransomware", "It depends on the RAID level" }, CorrectIndex = 2, Explanation = "RAID is NOT a backup. It protects against drive failure but not accidental deletion, ransomware, fire, or theft. Dedicated backups are still essential." }
+        }});
+
+        // Lesson 29: Computer Hardware Components
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 29, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "Which component primarily executes instructions in a computer?", Options = new() { "RAM", "CPU", "SSD", "Motherboard battery" }, CorrectIndex = 1, Explanation = "The CPU executes program instructions and performs calculations." },
+            new() { Id = qId++, Text = "What is the main role of RAM?", Options = new() { "Permanent storage", "Network routing", "Temporary active memory", "Power conversion" }, CorrectIndex = 2, Explanation = "RAM stores active data for fast access while programs are running." },
+            new() { Id = qId++, Text = "What is a common bottleneck in many older systems?", Options = new() { "Too many keyboard keys", "Slow storage drives", "Too many USB ports", "High monitor refresh rate" }, CorrectIndex = 1, Explanation = "Slow storage can bottleneck overall responsiveness even with a decent CPU." }
+        }});
+
+        // Lesson 30: Network Security Fundamentals
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 30, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "What is a key principle of zero trust security?", Options = new() { "Trust all internal users", "Trust all VPN users", "Never trust by default", "Disable all monitoring" }, CorrectIndex = 2, Explanation = "Zero trust assumes no user or device is trusted by default." },
+            new() { Id = qId++, Text = "Which control limits attacker movement inside a network?", Options = new() { "Network segmentation", "Longer monitor cables", "Higher Wi-Fi channels", "External SSD backups only" }, CorrectIndex = 0, Explanation = "Segmentation limits lateral movement by isolating network zones." },
+            new() { Id = qId++, Text = "Why are network logs important?", Options = new() { "They replace backups", "They help detect suspicious behavior", "They encrypt traffic", "They update drivers automatically" }, CorrectIndex = 1, Explanation = "Logs help teams detect and investigate suspicious network activity." }
+        }});
+
+        // Lesson 31: Functions and Modules
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 31, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "How do you define a function in Python?", Options = new() { "func myFunction()", "def my_function():", "function myFunction()", "define my_function()" }, CorrectIndex = 1, Explanation = "Python uses the def keyword to define functions." },
+            new() { Id = qId++, Text = "What is a Python module?", Options = new() { "A browser plugin", "A Python file with reusable code", "A CPU core", "A type of variable" }, CorrectIndex = 1, Explanation = "A module is a Python file containing code you can import and reuse." },
+            new() { Id = qId++, Text = "Why split code into modules?", Options = new() { "To make files longer", "To avoid function parameters", "To improve organization and reuse", "To disable imports" }, CorrectIndex = 2, Explanation = "Modular code is easier to maintain, test, and reuse." }
+        }});
+
+        // Lesson 32: JavaScript Fundamentals
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 32, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "What does the DOM represent in web development?", Options = new() { "Database Object Model", "Document Object Model", "Dynamic Output Method", "Distributed Object Map" }, CorrectIndex = 1, Explanation = "DOM stands for Document Object Model, representing page structure in code." },
+            new() { Id = qId++, Text = "Which syntax handles asynchronous code in modern JavaScript?", Options = new() { "switch/case only", "goto blocks", "async/await", "typedef" }, CorrectIndex = 2, Explanation = "async/await simplifies working with asynchronous operations." },
+            new() { Id = qId++, Text = "What is a common use of JavaScript events?", Options = new() { "Designing CPU chips", "Responding to user actions", "Compiling C# code", "Formatting hard drives" }, CorrectIndex = 1, Explanation = "Events let JavaScript respond to actions like clicks and input changes." }
+        }});
+
+        // Lesson 33: Sentence Structure
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 33, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "What is typical English sentence order?", Options = new() { "Verb + Subject + Object", "Subject + Verb + Object", "Object + Verb + Subject", "Subject + Object + Verb" }, CorrectIndex = 1, Explanation = "Standard English order is Subject + Verb + Object." },
+            new() { Id = qId++, Text = "A sentence with two independent clauses is usually:", Options = new() { "Simple", "Fragmented", "Compound", "Imperative only" }, CorrectIndex = 2, Explanation = "Compound sentences connect two independent clauses." },
+            new() { Id = qId++, Text = "Why vary sentence length in writing?", Options = new() { "To confuse readers", "To improve rhythm and clarity", "To remove punctuation", "To avoid transitions" }, CorrectIndex = 1, Explanation = "Sentence variety improves flow and readability." }
+        }});
+
+        // Lesson 34: Common Spanish Verbs
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 34, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "Which verb pair both means 'to be' in Spanish?", Options = new() { "tener and hacer", "ir and venir", "ser and estar", "poder and querer" }, CorrectIndex = 2, Explanation = "Ser and estar both translate as 'to be' but are used differently." },
+            new() { Id = qId++, Text = "Which verb is commonly used for possession (to have)?", Options = new() { "tener", "ser", "ir", "estar" }, CorrectIndex = 0, Explanation = "Tener means 'to have' and is frequently used in daily conversation." },
+            new() { Id = qId++, Text = "What improves verb fluency most?", Options = new() { "Only reading grammar charts", "Avoiding speaking", "Regular speaking practice with common verbs", "Memorizing random nouns only" }, CorrectIndex = 2, Explanation = "Frequent spoken practice with common verbs accelerates fluency." }
+        }});
+
+        // Lesson 35: Network Topologies
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 35, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "Which topology is common in modern LANs and easy to manage?", Options = new() { "Bus", "Ring", "Star", "Fully disconnected" }, CorrectIndex = 2, Explanation = "Star topology is common because failures are easier to isolate." },
+            new() { Id = qId++, Text = "Which topology provides strong redundancy with multiple paths?", Options = new() { "Mesh", "Bus", "Point-to-point only", "Single-node" }, CorrectIndex = 0, Explanation = "Mesh topology provides multiple paths and high fault tolerance." },
+            new() { Id = qId++, Text = "Logical topology describes:", Options = new() { "Cable color", "Data flow patterns", "Rack weight", "Power adapter type" }, CorrectIndex = 1, Explanation = "Logical topology explains how data moves, not just physical cabling." }
+        }});
+
+        // Lesson 36: Application Layer Protocols
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 36, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "Which protocol translates domain names to IP addresses?", Options = new() { "SMTP", "DNS", "FTP", "SSH" }, CorrectIndex = 1, Explanation = "DNS resolves domain names to IP addresses." },
+            new() { Id = qId++, Text = "What does HTTPS add compared to HTTP?", Options = new() { "More ads", "Transport encryption via TLS", "Smaller IP addresses", "No status codes" }, CorrectIndex = 1, Explanation = "HTTPS adds TLS encryption for confidentiality and integrity." },
+            new() { Id = qId++, Text = "Which protocol is primarily used to send email?", Options = new() { "IMAP", "SMTP", "POP3", "SNMP" }, CorrectIndex = 1, Explanation = "SMTP is the core protocol for sending email." }
+        }});
+
+        // Lesson 37: Model Evaluation Metrics
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 37, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "Which metric is especially useful when false negatives matter?", Options = new() { "Recall", "Only accuracy", "Clock speed", "Latency percent" }, CorrectIndex = 0, Explanation = "Recall measures how many true positives were captured." },
+            new() { Id = qId++, Text = "For regression tasks, which metric measures average absolute error?", Options = new() { "F1-score", "MAE", "ROC-AUC", "Precision" }, CorrectIndex = 1, Explanation = "MAE is Mean Absolute Error, common for regression evaluation." },
+            new() { Id = qId++, Text = "Why can accuracy be misleading on imbalanced data?", Options = new() { "It ignores all predictions", "It can hide poor minority-class performance", "It only works with text", "It is always zero" }, CorrectIndex = 1, Explanation = "High accuracy may still miss minority classes in imbalanced datasets." }
+        }});
+
+        // Lesson 38: Training Neural Networks Effectively
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 38, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "What hyperparameter strongly affects optimization stability?", Options = new() { "Font size", "Learning rate", "Cable length", "Screen brightness" }, CorrectIndex = 1, Explanation = "Learning rate strongly influences convergence behavior." },
+            new() { Id = qId++, Text = "What technique can reduce overfitting in neural networks?", Options = new() { "Dropout", "Ignoring validation data", "Removing all activations", "Always using one epoch" }, CorrectIndex = 0, Explanation = "Dropout is a regularization technique that helps reduce overfitting." },
+            new() { Id = qId++, Text = "Why use early stopping?", Options = new() { "To increase overfitting", "To stop training when validation no longer improves", "To skip data preparation", "To disable GPUs" }, CorrectIndex = 1, Explanation = "Early stopping prevents overtraining once validation performance plateaus." }
+        }});
+
+        // Lesson 39: Written Communication at Work
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 39, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "What should most professional messages include?", Options = new() { "Only greetings", "Context, purpose, and requested action", "Unrelated details", "No deadlines ever" }, CorrectIndex = 1, Explanation = "Clear communication includes context, purpose, and expected next steps." },
+            new() { Id = qId++, Text = "Why use headings and bullet points?", Options = new() { "To reduce readability", "To improve scanning and clarity", "To remove structure", "To avoid decisions" }, CorrectIndex = 1, Explanation = "Structured formatting makes information easier to scan and understand." },
+            new() { Id = qId++, Text = "What is a key risk of ambiguous writing?", Options = new() { "Faster execution", "Fewer misunderstandings", "Misaligned expectations", "Automatic approvals" }, CorrectIndex = 2, Explanation = "Ambiguous writing can cause misunderstandings and rework." }
+        }});
+
+        // Lesson 40: Decision-Making for Leaders
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 40, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "What helps evaluate options objectively?", Options = new() { "Ignoring data", "Impact-vs-effort frameworks", "Choosing randomly", "Delaying forever" }, CorrectIndex = 1, Explanation = "Structured frameworks help leaders compare options consistently." },
+            new() { Id = qId++, Text = "After deciding, leaders should communicate:", Options = new() { "Nothing", "Rationale, ownership, and success criteria", "Only budget numbers", "Only technical jargon" }, CorrectIndex = 1, Explanation = "Clear communication enables aligned execution and accountability." },
+            new() { Id = qId++, Text = "Why review outcomes after a decision?", Options = new() { "To avoid learning", "To capture lessons and adjust strategy", "To remove accountability", "To delay delivery" }, CorrectIndex = 1, Explanation = "Post-decision review helps improve future decision quality." }
+        }});
+
+        // Lesson 41: Power Supply and Cooling
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 41, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "What is the PSU's main job in a PC?", Options = new() { "Render graphics", "Convert AC power to stable DC outputs", "Store files", "Manage Wi-Fi" }, CorrectIndex = 1, Explanation = "The PSU converts wall AC into DC voltages required by components." },
+            new() { Id = qId++, Text = "What can happen when cooling is insufficient?", Options = new() { "Thermal throttling", "Faster backups", "More CPU cores", "Automatic RAID" }, CorrectIndex = 0, Explanation = "High temperatures can trigger thermal throttling and reduce performance." },
+            new() { Id = qId++, Text = "What does an 80 PLUS rating indicate?", Options = new() { "Display quality", "Power efficiency class", "Storage capacity", "Network speed" }, CorrectIndex = 1, Explanation = "80 PLUS ratings classify PSU energy efficiency levels." }
+        }});
+
+        // Lesson 42: Data Reliability and Recovery
+        quizzes.Add(new Quiz { Id = qId++, LessonId = 42, Questions = new List<Question>
+        {
+            new() { Id = qId++, Text = "What does RPO represent?", Options = new() { "Maximum acceptable data loss window", "Recovery server speed", "Power output of drives", "Network cable type" }, CorrectIndex = 0, Explanation = "RPO defines how much recent data loss is acceptable after an incident." },
+            new() { Id = qId++, Text = "Why test restore procedures regularly?", Options = new() { "Backups are always perfect", "To verify recovery actually works", "To reduce storage usage only", "To disable encryption" }, CorrectIndex = 1, Explanation = "Testing restores ensures backup data is usable during real incidents." },
+            new() { Id = qId++, Text = "Which practice strengthens data resilience?", Options = new() { "Single copy only", "Versioned backups and replication", "No access controls", "Disable monitoring" }, CorrectIndex = 1, Explanation = "Versioning and replication improve resilience across failure scenarios." }
         }});
 
         return quizzes;
@@ -766,6 +916,132 @@ public class DataService
             new() { Term = "RAID 5", Definition = "Striping with parity across 3+ drives, tolerates one failure" },
             new() { Term = "RAID 10", Definition = "Combines mirroring and striping — fast and redundant, needs 4+ drives" },
             new() { Term = "3-2-1 Rule", Definition = "3 copies, 2 media types, 1 offsite backup for disaster recovery" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 29, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Processing", Definition = "Execution of instructions mainly by the CPU" },
+            new() { Term = "Memory", Definition = "Fast temporary storage, primarily RAM" },
+            new() { Term = "Storage", Definition = "Persistent data retention via SSDs or HDDs" },
+            new() { Term = "Bottleneck", Definition = "A component limiting overall system performance" },
+            new() { Term = "Thermal Throttling", Definition = "Automatic speed reduction to prevent overheating" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 30, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Zero Trust", Definition = "Security model where no user or device is trusted by default" },
+            new() { Term = "Segmentation", Definition = "Splitting networks into isolated zones for security" },
+            new() { Term = "MFA", Definition = "Multi-factor authentication requiring more than one verification factor" },
+            new() { Term = "IDS", Definition = "Intrusion Detection System monitoring suspicious network behavior" },
+            new() { Term = "VPN", Definition = "Encrypted tunnel for secure remote network access" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 31, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "def", Definition = "Python keyword used to define a function" },
+            new() { Term = "Parameter", Definition = "Input accepted by a function" },
+            new() { Term = "Return Value", Definition = "Output produced by a function" },
+            new() { Term = "Module", Definition = "Python file containing reusable code" },
+            new() { Term = "import", Definition = "Statement used to load code from another module" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 32, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "DOM", Definition = "Document Object Model representing page structure" },
+            new() { Term = "Event", Definition = "User or browser action JavaScript can respond to" },
+            new() { Term = "Promise", Definition = "Object representing future completion of async work" },
+            new() { Term = "async/await", Definition = "Syntax for writing asynchronous code clearly" },
+            new() { Term = "Module", Definition = "Reusable JavaScript file imported with export/import" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 33, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Subject", Definition = "Who or what performs the action in a sentence" },
+            new() { Term = "Verb", Definition = "Word expressing action or state" },
+            new() { Term = "Object", Definition = "Receiver of the action in a sentence" },
+            new() { Term = "Compound Sentence", Definition = "Sentence with two independent clauses" },
+            new() { Term = "Transition", Definition = "Word/phrase connecting ideas smoothly" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 34, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Ser", Definition = "To be (identity, characteristics)" },
+            new() { Term = "Estar", Definition = "To be (state, location)" },
+            new() { Term = "Tener", Definition = "To have" },
+            new() { Term = "Ir", Definition = "To go" },
+            new() { Term = "Hacer", Definition = "To do or make" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 35, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Star Topology", Definition = "Devices connect through a central switch or hub" },
+            new() { Term = "Bus Topology", Definition = "All devices share one main communication line" },
+            new() { Term = "Ring Topology", Definition = "Devices form a closed loop data path" },
+            new() { Term = "Mesh Topology", Definition = "Multiple paths between nodes for high redundancy" },
+            new() { Term = "Logical Topology", Definition = "How data flows regardless of physical cabling" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 36, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "HTTP", Definition = "Protocol for transferring web resources" },
+            new() { Term = "HTTPS", Definition = "HTTP secured with TLS encryption" },
+            new() { Term = "DNS", Definition = "System translating domain names to IP addresses" },
+            new() { Term = "SMTP", Definition = "Protocol used to send email" },
+            new() { Term = "FTP/SFTP", Definition = "Protocols for transferring files across networks" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 37, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Precision", Definition = "How many predicted positives are truly positive" },
+            new() { Term = "Recall", Definition = "How many actual positives were correctly found" },
+            new() { Term = "F1-Score", Definition = "Balance metric combining precision and recall" },
+            new() { Term = "MAE", Definition = "Mean Absolute Error for regression tasks" },
+            new() { Term = "Confusion Matrix", Definition = "Table showing classification prediction outcomes" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 38, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Learning Rate", Definition = "Controls update step size during training" },
+            new() { Term = "Batch Size", Definition = "Number of samples used in one training update" },
+            new() { Term = "Dropout", Definition = "Regularization method that randomly disables neurons" },
+            new() { Term = "Early Stopping", Definition = "Stops training when validation stops improving" },
+            new() { Term = "Weight Decay", Definition = "Regularization penalizing large model weights" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 39, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Context", Definition = "Background information needed to understand a message" },
+            new() { Term = "Call to Action", Definition = "Specific request for what the reader should do" },
+            new() { Term = "Concise Writing", Definition = "Using clear, direct language without unnecessary detail" },
+            new() { Term = "Audience", Definition = "People the message is intended for" },
+            new() { Term = "Ambiguity", Definition = "Unclear wording that can cause misunderstandings" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 40, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "Prioritization", Definition = "Ranking options by importance and impact" },
+            new() { Term = "Risk Assessment", Definition = "Evaluating potential negative outcomes before acting" },
+            new() { Term = "Pre-mortem", Definition = "Exercise imagining failure causes before implementation" },
+            new() { Term = "Ownership", Definition = "Clear assignment of responsibility for execution" },
+            new() { Term = "Retrospective", Definition = "Review of outcomes to capture lessons learned" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 41, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "PSU", Definition = "Power Supply Unit converting AC to DC for components" },
+            new() { Term = "80 PLUS", Definition = "Efficiency certification standard for power supplies" },
+            new() { Term = "Airflow", Definition = "Directed movement of air to remove heat from components" },
+            new() { Term = "Heat Sink", Definition = "Metal component dissipating heat from chips" },
+            new() { Term = "Headroom", Definition = "Extra power and cooling capacity for stability and upgrades" }
+        }});
+
+        games.Add(new MiniGame { Id = gId++, LessonId = 42, Type = MiniGameType.Flashcard, Items = new()
+        {
+            new() { Term = "RPO", Definition = "Recovery Point Objective — maximum acceptable data loss time window" },
+            new() { Term = "RTO", Definition = "Recovery Time Objective — maximum acceptable service downtime duration" },
+            new() { Term = "Snapshot", Definition = "Point-in-time copy used for fast recovery" },
+            new() { Term = "Replication", Definition = "Copying data to another system for resilience" },
+            new() { Term = "Restore Test", Definition = "Verification that backups can be recovered successfully" }
         }});
 
         return games;
