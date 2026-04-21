@@ -1037,8 +1037,8 @@ public class DataService
 
         games.Add(new MiniGame { Id = gId++, LessonId = 42, Type = MiniGameType.Flashcard, Items = new()
         {
-            new() { Term = "RPO", Definition = "Maximum acceptable data loss time window" },
-            new() { Term = "RTO", Definition = "Maximum acceptable service downtime duration" },
+            new() { Term = "RPO", Definition = "Recovery Point Objective — maximum acceptable data loss time window" },
+            new() { Term = "RTO", Definition = "Recovery Time Objective — maximum acceptable service downtime duration" },
             new() { Term = "Snapshot", Definition = "Point-in-time copy used for fast recovery" },
             new() { Term = "Replication", Definition = "Copying data to another system for resilience" },
             new() { Term = "Restore Test", Definition = "Verification that backups can be recovered successfully" }
