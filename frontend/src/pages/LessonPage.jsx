@@ -145,7 +145,6 @@ export default function LessonPage() {
       )}
 
       <div className="lesson-actions" style={{ marginTop: '2rem' }}>
-      <div className="lesson-actions">
         <button className="action-btn quiz-btn" onClick={() => navigate(`/lesson/${id}/quiz`)}>
           📝 Take Quiz
         </button>
