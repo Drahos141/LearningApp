@@ -33,6 +33,8 @@ import VisualSequence from '../games/VisualSequence';
 import CriticalThinking from '../games/CriticalThinking';
 import CodeBreaker from '../games/CodeBreaker';
 import SpatialReasoning from '../games/SpatialReasoning';
+import LogicGrid from '../games/LogicGrid';
+import MathBlitz from '../games/MathBlitz';
 
 const GAME_COMPONENTS = {
   'memory-cards': MemoryCards,
@@ -66,6 +68,8 @@ const GAME_COMPONENTS = {
   'critical-thinking': CriticalThinking,
   'code-breaker': CodeBreaker,
   'spatial-reasoning': SpatialReasoning,
+  'logic-grid': LogicGrid,
+  'math-blitz': MathBlitz,
 };
 
 export default function GamePlay() {
