@@ -643,6 +643,8 @@ const games = [
   { _id:29, slug:'critical-thinking', name:'Critical Thinking', type:'logic', difficulty:'hard', description:'Identify logical fallacies and flawed reasoning', instructions:'Analyze arguments and identify the specific logical flaw.' },
   { _id:30, slug:'code-breaker', name:'Code Breaker', type:'logic', difficulty:'hard', description:'Deduce the secret number code from clues', instructions:'Use Mastermind-style clues about correct digits and positions to crack the code.' },
   { _id:31, slug:'spatial-reasoning', name:'Spatial Reasoning', type:'spatial', difficulty:'hard', description:'Answer questions about 3D shapes and spatial transformations', instructions:'Visualize 3D shapes, rotations, and spatial relationships to answer each question.' },
+  { _id:32, slug:'logic-grid', name:'Logic Grid', type:'logic', difficulty:'hard', description:'Solve Einstein-style grid deduction puzzles using clues', instructions:'Click cells to mark Yes/No. Use the clues to deduce which attribute belongs to each entity.' },
+  { _id:33, slug:'math-blitz', name:'Math Blitz', type:'math', difficulty:'hard', description:'Rapid-fire mental arithmetic challenge for 1–4 players', instructions:'Select 1–4 players. Each player gets 6 problems with 8 seconds each. Percentages, order of operations, and multi-digit maths included.' },
 ];
 
 async function seed() {

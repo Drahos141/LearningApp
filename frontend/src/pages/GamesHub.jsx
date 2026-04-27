@@ -25,7 +25,7 @@ export default function GamesHub() {
     <div className="games-hub">
       <header className="games-hub-header">
         <h1>🧩 Logical Games</h1>
-        <p>Train your brain with 30 interactive games</p>
+        <p>Train your brain with 33 interactive games</p>
       </header>
       <main className="games-hub-main">
         <div className="nav-row">
