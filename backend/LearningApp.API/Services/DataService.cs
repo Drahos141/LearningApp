@@ -79,6 +79,24 @@ public class DataService
                             new() { Id = lessonId++, SubcategoryId = 2, Order = 2, Title = "Encryption and Passwords",
                                 Content = "Encryption transforms readable data (plaintext) into an unreadable format (ciphertext) using an algorithm and a key. Only someone with the correct key can decrypt and read the data.\n\nSymmetric encryption uses the same key for both encryption and decryption (e.g., AES). Asymmetric encryption uses a public key to encrypt and a private key to decrypt (e.g., RSA), which is the basis for HTTPS.\n\nStrong passwords are at least 12 characters long and include a mix of uppercase letters, lowercase letters, numbers, and symbols. Password managers help users store and generate strong, unique passwords for every service.\n\nTwo-factor authentication (2FA) adds an extra layer of security by requiring a second verification step beyond just a password.\n\nIn real systems, passwords should be hashed and salted rather than stored in plain text. Organizations also adopt least privilege access, account lockout policies, and phishing-resistant authentication methods to reduce account compromise." }
                         }
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 1, Name = "Linux & Command Line",
+                        Description = "Master Linux fundamentals and terminal commands.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 1, Name = "Cloud Computing",
+                        Description = "Understand cloud platforms, services, and deployment models.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 1, Name = "Virtualization & Containers",
+                        Description = "Learn how VMs, Docker, and Kubernetes transform infrastructure.",
+                        Lessons = new List<Lesson>()
                     }
                 }
             },
@@ -111,6 +129,24 @@ public class DataService
                             new() { Id = lessonId++, SubcategoryId = 4, Order = 2, Title = "CSS Styling",
                                 Content = "CSS (Cascading Style Sheets) controls the visual appearance of HTML elements. Styles can be applied inline, in a style tag, or in an external .css file.\n\nSelectors target HTML elements: element selectors (p {}), class selectors (.classname {}), ID selectors (#id {}), and attribute selectors. The cascade determines which rule wins when multiple rules apply to the same element.\n\nThe box model describes how every element occupies space: content, padding, border, and margin from inside out. Flexbox and Grid are modern layout systems — Flexbox is one-dimensional, Grid is two-dimensional.\n\nMedia queries enable responsive design: @media (max-width: 768px) { ... } applies styles only on small screens.\n\nMaintainable CSS usually follows consistent naming conventions and reusable design tokens for spacing, color, and typography. This approach scales better for larger projects and makes theme changes faster and safer." }
                         }
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 2, Name = "Data Structures & Algorithms",
+                        Description = "Understand essential data structures and algorithmic problem-solving.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 2, Name = "Databases & SQL",
+                        Description = "Design and query relational databases with SQL.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 2, Name = "Software Engineering",
+                        Description = "Apply professional software development practices and design principles.",
+                        Lessons = new List<Lesson>()
                     }
                 }
             },
@@ -143,6 +179,24 @@ public class DataService
                             new() { Id = lessonId++, SubcategoryId = 6, Order = 2, Title = "Numbers and Colors",
                                 Content = "Learning numbers and colors is essential for everyday communication in Spanish.\n\nNumbers 1–10: uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez. 11–15: once, doce, trece, catorce, quince. Tens: veinte (20), treinta (30), cuarenta (40), cincuenta (50), cien (100).\n\nBasic colors: rojo (red), azul (blue), verde (green), amarillo (yellow), negro (black), blanco (white), naranja (orange), morado/violeta (purple), rosa (pink), gris (grey), marrón/café (brown).\n\nIn Spanish, adjectives (including colors) agree in gender and number with the noun they describe. For example: el coche rojo (the red car, masculine), la casa roja (the red house, feminine), los coches rojos (the red cars, masculine plural).\n\nFrequent real-world drills such as reading prices, dates, and addresses improve retention quickly. Pairing colors with everyday objects and speaking full phrases reinforces both vocabulary and grammar agreement." }
                         }
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 3, Name = "French Basics",
+                        Description = "Start learning French with essential vocabulary and phrases.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 3, Name = "German Basics",
+                        Description = "Begin learning German with core vocabulary and grammar.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 3, Name = "Writing Skills",
+                        Description = "Develop strong written communication in English.",
+                        Lessons = new List<Lesson>()
                     }
                 }
             },
@@ -175,6 +229,24 @@ public class DataService
                             new() { Id = lessonId++, SubcategoryId = 8, Order = 2, Title = "TCP vs UDP",
                                 Content = "TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are the two main transport-layer protocols.\n\nTCP is connection-oriented: it establishes a connection via a three-way handshake (SYN, SYN-ACK, ACK), guarantees delivery, ensures packets arrive in order, and performs error checking and retransmission. Used for web browsing (HTTP/HTTPS), email, and file transfers where reliability matters.\n\nUDP is connectionless: it sends packets without establishing a connection, offers no delivery guarantee or ordering, but is much faster with lower overhead. Used for video streaming, online gaming, DNS lookups, and VoIP where speed matters more than perfect reliability.\n\nCommon port numbers: HTTP 80, HTTPS 443, FTP 21, SSH 22, DNS 53, SMTP 25. A socket is a combination of IP address and port (e.g., 192.168.1.1:443).\n\nProtocol choice depends on the business requirement. Applications that prioritize correctness and complete delivery usually prefer TCP, while low-latency real-time apps often use UDP with custom recovery or buffering strategies." }
                         }
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 4, Name = "Network Security",
+                        Description = "Protect networks with firewalls, encryption, and security best practices.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 4, Name = "Cloud Networking",
+                        Description = "Understand networking in cloud and hybrid environments.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 4, Name = "Network Design",
+                        Description = "Design reliable, scalable, and secure network architectures.",
+                        Lessons = new List<Lesson>()
                     }
                 }
             },
@@ -207,6 +279,24 @@ public class DataService
                             new() { Id = lessonId++, SubcategoryId = 10, Order = 2, Title = "Deep Learning Applications",
                                 Content = "Deep learning (DL) uses neural networks with many layers to automatically learn hierarchical representations of data. It has transformed many fields.\n\nConvolutional Neural Networks (CNNs) are specialized for image data — they use convolution operations to detect features like edges, shapes, and textures. Used in image classification, object detection, and medical imaging.\n\nRecurrent Neural Networks (RNNs) and LSTMs process sequential data (text, speech, time series). Transformers have largely replaced RNNs for NLP tasks — they power large language models like GPT and BERT.\n\nGenerative AI includes GANs (Generative Adversarial Networks) for creating images, and diffusion models for image/video generation. Large Language Models (LLMs) can generate text, write code, translate languages, and answer questions.\n\nDeployment adds practical constraints such as latency, memory use, explainability, and fairness. Production systems often combine deep models with monitoring, fallback rules, and periodic retraining pipelines." }
                         }
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 5, Name = "Natural Language Processing",
+                        Description = "Process and analyze human language with AI.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 5, Name = "Computer Vision",
+                        Description = "Teach machines to interpret and understand visual information.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 5, Name = "AI Tools & Frameworks",
+                        Description = "Explore leading Python libraries and frameworks for machine learning.",
+                        Lessons = new List<Lesson>()
                     }
                 }
             },
@@ -239,6 +329,24 @@ public class DataService
                             new() { Id = lessonId++, SubcategoryId = 12, Order = 2, Title = "Emotional Intelligence",
                                 Content = "Emotional intelligence (EI or EQ) is the ability to recognize, understand, manage, and use emotions — both your own and others' — effectively.\n\nDaniel Goleman's EI model has five components: Self-awareness (knowing your emotions), Self-regulation (managing your emotions), Motivation (intrinsic drive to achieve), Empathy (understanding others' feelings), and Social skills (managing relationships).\n\nHigh EQ leaders build stronger teams, handle conflict better, stay calm under pressure, and inspire trust. EQ is often cited as a stronger predictor of leadership success than IQ.\n\nDeveloping EI: Practice mindfulness to increase self-awareness. Keep a journal to reflect on emotional reactions. Seek feedback. Practice empathy by actively trying to see situations from others' perspectives. Pause before reacting in emotionally charged situations.\n\nEmotional intelligence is trainable through deliberate habits such as pause-and-label techniques, reflective feedback sessions, and conflict debriefs. Over time, these practices improve trust, resilience, and collaboration." }
                         }
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 6, Name = "Time Management",
+                        Description = "Master productivity techniques and prioritization strategies.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 6, Name = "Critical Thinking",
+                        Description = "Develop logical reasoning and structured problem-solving skills.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 6, Name = "Teamwork & Collaboration",
+                        Description = "Build effective team relationships and collaboration habits.",
+                        Lessons = new List<Lesson>()
                     }
                 }
             },
@@ -271,6 +379,24 @@ public class DataService
                             new() { Id = lessonId++, SubcategoryId = 14, Order = 2, Title = "RAID and Backup Strategies",
                                 Content = "RAID (Redundant Array of Independent Disks) combines multiple physical drives into one logical unit for performance or redundancy.\n\nRAID 0 (Striping): Data split across drives for maximum performance. No redundancy — if one drive fails, all data is lost. RAID 1 (Mirroring): Data duplicated on two drives. If one fails, the other takes over. RAID 5: Data striped across 3+ drives with parity, tolerating one drive failure. RAID 6: Like RAID 5 but tolerates two drive failures. RAID 10: Combines mirroring and striping — fast and redundant but requires 4+ drives.\n\nRAID is not a backup — it protects against hardware failure but not accidental deletion, ransomware, or site disasters. The 3-2-1 backup rule: keep 3 copies of data, on 2 different media types, with 1 copy offsite (e.g., cloud).\n\nCloud storage (Google Drive, OneDrive, Backblaze) provides offsite backups with automatic syncing.\n\nRecovery planning should include regular restore testing, versioned backups, and clear recovery objectives such as RPO and RTO. A backup that has never been tested may fail when it is needed most." }
                         }
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 7, Name = "Embedded Systems",
+                        Description = "Explore microcontrollers, IoT hardware, and embedded computing.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 7, Name = "Server Hardware",
+                        Description = "Understand enterprise server architecture and data centers.",
+                        Lessons = new List<Lesson>()
+                    },
+                    new()
+                    {
+                        Id = subId++, CategoryId = 7, Name = "Mobile Devices",
+                        Description = "Learn about smartphone and tablet hardware components.",
+                        Lessons = new List<Lesson>()
                     }
                 }
             }
