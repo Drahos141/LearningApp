@@ -44,7 +44,17 @@ npm install
 npm run dev
 ```
 
-The app will be available at **http://localhost:5173**
+The app will be available at **http://localhost:5175**
+
+### 3. Run With Docker Compose
+
+```bash
+docker compose up -d --build
+```
+
+The frontend will be available at **http://localhost:5175**
+The Node API will be available at **http://localhost:4000**
+The ASP.NET Core API will be available at **http://localhost:5000**
 
 ## API Endpoints
 
