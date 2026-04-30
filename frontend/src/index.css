@@ -19,14 +19,9 @@
 
 body {
   min-height: 100vh;
-  background-color: #fafafa;
-  background-image:
-    linear-gradient(45deg, #ececec 25%, transparent 25%),
-    linear-gradient(-45deg, #ececec 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #ececec 75%),
-    linear-gradient(-45deg, transparent 75%, #ececec 75%);
-  background-size: 24px 24px;
-  background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+  background-color: #f4f4f4;
+  background-image: radial-gradient(circle, #b8b8b8 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 button { cursor: pointer; font-family: inherit; }
 
