@@ -19,9 +19,24 @@
 
 body {
   min-height: 100vh;
-  background-color: #f4f4f4;
-  background-image: radial-gradient(circle, #b8b8b8 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-color: #0d0d0d;
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.055) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(180,180,180,0.04) 0%, transparent 55%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 38px,
+      rgba(255,255,255,0.018) 38px,
+      rgba(255,255,255,0.018) 39px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 38px,
+      rgba(255,255,255,0.010) 38px,
+      rgba(255,255,255,0.010) 39px
+    );
 }
 button { cursor: pointer; font-family: inherit; }
 
