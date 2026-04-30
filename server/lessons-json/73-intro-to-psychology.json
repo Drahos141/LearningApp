@@ -1,0 +1,24 @@
+{
+  "id": 73,
+  "order": 1,
+  "title": "Introduction to Psychology",
+  "content": "Psychology is the scientific study of mind and behaviour. It explores how people think, feel, perceive, and act — both as individuals and in social groups. The word comes from the Greek psyche (soul/mind) and logos (study).\n\nModern psychology emerged as a separate discipline in 1879 when Wilhelm Wundt opened the first experimental psychology laboratory in Leipzig, Germany. Before that, questions about the mind were handled by philosophy and physiology.\n\nMajor perspectives in psychology each offer a different lens:\n\n* Biological — behaviour stems from genetics, neurons, and brain chemistry\n* Psychodynamic — unconscious conflicts and early childhood shape personality (Freud)\n* Behavioural — all behaviour is learned through conditioning and reinforcement\n* Humanistic — people are motivated by growth and self-actualisation (Maslow, Rogers)\n* Cognitive — mental processes like memory, thinking, and problem-solving drive behaviour\n* Sociocultural — culture, social norms, and environment influence how we think and act\n* Evolutionary — behaviours evolved because they enhanced survival and reproduction\n\nPsychologists use scientific methods: experiments, surveys, case studies, and observations. Ethics are central — participants must give informed consent and must not be harmed.\n\n* Psychology became a science when Wundt applied experimental methods in 1879\n* Introspection was Wundt's first method: systematically reporting one's own mental states\n* The APA (American Psychological Association) sets ethical standards for research\n* Clinical psychologists diagnose and treat mental disorders; psychiatrists can prescribe medication\n* Neuroscience and psychology increasingly overlap in the field of neuropsychology",
+  "depths": [
+    "The history of psychology moves through distinct schools. Structuralism (Wundt, Titchener) tried to break consciousness into basic elements. Functionalism (William James) asked what mental processes do — how they help us adapt. Gestalt psychology argued the whole is greater than the sum of its parts — the brain organises perception into meaningful wholes.\n\nPsychoanalysis (Freud) dominated the early 20th century: unconscious drives, repression, and the id/ego/superego. Behaviourism (Watson, Skinner) rejected the unobservable mind entirely, focusing only on measurable behaviour. The Cognitive Revolution of the 1950s–60s brought mental processes back using information-processing metaphors.\n\n* William James wrote the first major psychology textbook: Principles of Psychology (1890)\n* John B. Watson's 'Little Albert' experiment conditioned a baby to fear a white rat\n* B.F. Skinner invented the operant conditioning chamber (Skinner box)\n* The DSM (Diagnostic and Statistical Manual of Mental Disorders) classifies mental conditions\n* Positive psychology (Seligman, 2000s) focuses on flourishing rather than disorder"
+  ],
+  "questions": [
+    ["Who opened the first psychology laboratory in 1879?", ["Sigmund Freud", "William James", "Wilhelm Wundt", "Ivan Pavlov"], 2, "Wilhelm Wundt founded the first experimental psychology lab in Leipzig in 1879."],
+    ["Which perspective focuses on unconscious conflicts?", ["Behavioural", "Cognitive", "Psychodynamic", "Humanistic"], 2, "The psychodynamic perspective, rooted in Freud's work, emphasises unconscious processes."],
+    ["What is the cognitive perspective primarily concerned with?", ["Genetics", "Social norms", "Mental processes like memory and thinking", "Unconscious drives"], 2, "Cognitive psychology studies internal mental processes such as memory, perception, and problem-solving."],
+    ["Psychology became a science by adopting what approach?", ["Pure introspection", "Philosophical reasoning", "Experimental and scientific methods", "Case studies only"], 2, "Using controlled experiments and empirical methods made psychology a science."],
+    ["Which perspective argues behaviour is learned through conditioning?", ["Humanistic", "Evolutionary", "Biological", "Behavioural"], 3, "Behaviourism holds that all behaviour is acquired through conditioning and reinforcement."]
+  ],
+  "flashcards": [
+    ["Psychology", "Scientific study of mind and behaviour."],
+    ["Wilhelm Wundt", "Founded the first psychology lab in 1879; father of experimental psychology."],
+    ["Behaviourism", "School holding that psychology should study only observable behaviour."],
+    ["Cognitive perspective", "Focuses on mental processes: memory, thinking, problem-solving."],
+    ["Humanistic psychology", "Emphasises personal growth and self-actualisation (Maslow, Rogers)."],
+    ["Psychodynamic perspective", "Stresses unconscious conflicts and early experiences (Freud)."]
+  ]
+}

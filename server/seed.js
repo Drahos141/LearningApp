@@ -1,9 +1,50 @@
 require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
 const mongoose = require('mongoose');
 const Category = require('./models/Category');
 const Game = require('./models/Game');
 const lessonsAdditional = require('./lessonsAdditional');
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/learningapp';
+
+function loadJsonLessons(dir) {
+  const folder = path.join(__dirname, dir);
+  if (!fs.existsSync(folder)) return [];
+  return fs.readdirSync(folder)
+    .filter(f => f.endsWith('.json'))
+    .sort()
+    .map(f => {
+      let data;
+      try {
+        data = JSON.parse(fs.readFileSync(path.join(folder, f), 'utf8'));
+      } catch (e) {
+        throw new Error(`Failed to parse lesson file "${f}": ${e.message}`);
+      }
+      const required = ['id', 'order', 'title', 'content'];
+      for (const field of required) {
+        if (data[field] === undefined || data[field] === null) {
+          throw new Error(`Lesson file "${f}" is missing required field: "${field}"`);
+        }
+      }
+      if (typeof data.id !== 'number') throw new Error(`Lesson file "${f}": "id" must be a number`);
+      if (typeof data.order !== 'number') throw new Error(`Lesson file "${f}": "order" must be a number`);
+      return {
+        _id: data.id,
+        order: data.order,
+        title: data.title,
+        content: data.content,
+        depths: data.depths || [],
+        additionalInfo: data.additionalInfo || null,
+        deepDive: data.deepDive || null,
+        quiz: {
+          questions: (data.questions || []).map(([text, options, correctIndex, explanation]) => ({
+            text, options, correctIndex, explanation
+          }))
+        },
+        flashcards: (data.flashcards || []).map(([front, back]) => ({ front, back }))
+      };
+    });
+}
 
 function lesson(id, order, title, content, depths, questions, flashcards, additionalInfo, deepDive) {
   const extra = lessonsAdditional[id] || {};
@@ -609,6 +650,25 @@ const categories = [
         ]}
     ]}
 ];
+
+// ══════════════════════════════════════════════════════════
+// Psychology category — lessons loaded dynamically from JSON files
+// in server/lessons-json/. Add or remove .json files to manage content.
+categories.push({
+  _id: 7,
+  name: 'Psychology',
+  icon: '🧠',
+  color: '#6a0dad',
+  description: 'Explore the science of mind and behaviour — perception, memory, emotion, and more.',
+  subcategories: [
+    {
+      _id: 25,
+      name: 'Foundations of Psychology',
+      description: 'Core concepts and theories that underpin the study of the human mind.',
+      lessons: loadJsonLessons('lessons-json')
+    }
+  ]
+});
 
 const games = [
   { _id:1, slug:'memory-cards', name:'Memory Cards', type:'memory', difficulty:'easy', description:'Flip cards to find matching pairs', instructions:'Click any card to flip it, then find its pair. Match all pairs to win.' },
