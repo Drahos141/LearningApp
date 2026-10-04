@@ -35,7 +35,7 @@ export default function MatrixPattern() {
       <div className="game-score-bar"><span>Q {idx+1}/{QUESTIONS.length}</span><span>Score: {score}</span></div>
       <div style={{ display: 'inline-grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '4px', background: '#e0e0e0', padding: '4px', borderRadius: '10px', marginBottom: '2rem' }}>
         {q.matrix.map((v, i) => (
-          <div key={i} style={{ width: '60px', height: '60px', background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 700, borderRadius: '6px', background: v === null ? '#0a0a0a' : '#f8f8f8', color: v === null ? '#fff' : '#0a0a0a' }}>{v === null ? '?' : v}</div>
+          <div key={i} style={{ width: '60px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 700, borderRadius: '6px', background: v === null ? '#0a0a0a' : '#f8f8f8', color: v === null ? '#fff' : '#0a0a0a' }}>{v === null ? '?' : v}</div>
         ))}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>

@@ -35,6 +35,7 @@ import CodeBreaker from '../games/CodeBreaker';
 import SpatialReasoning from '../games/SpatialReasoning';
 import LogicGrid from '../games/LogicGrid';
 import MathBlitz from '../games/MathBlitz';
+import TileMemory from '../games/TileMemory';
 
 const GAME_COMPONENTS = {
   'memory-cards': MemoryCards,
@@ -70,6 +71,7 @@ const GAME_COMPONENTS = {
   'spatial-reasoning': SpatialReasoning,
   'logic-grid': LogicGrid,
   'math-blitz': MathBlitz,
+  'tile-memory': TileMemory,
 };
 
 export default function GamePlay() {

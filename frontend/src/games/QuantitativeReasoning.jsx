@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 
 const D = { bg: '#001a0d', card: '#002211', border: '#003322', text: '#ccffe8', muted: '#559966', correct: { bg: '#003311', border: '#00cc55', text: '#00ee66' }, wrong: { bg: '#2e0a0a', border: '#cc3333', text: '#ff5555' } };
 

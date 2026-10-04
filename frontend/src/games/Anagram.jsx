@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { shuffle } from '../utils/shuffle';
 
 const WORDS = [
   { word: 'LISTEN', hint: 'To hear attentively' },
@@ -13,7 +14,7 @@ const WORDS = [
 
 function scramble(w) {
   let s = w.split('');
-  do { s.sort(() => Math.random() - 0.5); } while (s.join('') === w);
+  do { s = shuffle(s); } while (s.join('') === w);
   return s.join('');
 }
 

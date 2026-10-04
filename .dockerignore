@@ -1,0 +1,21 @@
+# Host-installed deps must never reach the image (Windows/macOS native binaries break on Linux).
+**/node_modules
+**/npm-debug.log
+frontend/dist
+**/.env
+**/.env.*
+!**/.env.example
+
+# Not part of the Node image
+backend/
+**/bin
+**/obj
+**/.vs
+.git
+.github
+.vscode
+.claude
+*.md
+docker-compose*.yml
+Dockerfile
+.dockerignore

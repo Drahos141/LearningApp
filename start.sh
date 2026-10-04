@@ -1,30 +1,17 @@
 #!/bin/bash
+# Run the app without Docker: builds the frontend and serves everything on http://localhost:4000
 set -e
 cd "$(dirname "$0")"
 
-echo "=== LearningApp Setup ==="
+echo "[1/3] Installing server dependencies..."
+(cd server && npm ci)
 
-# Check for MongoDB
-if ! command -v mongod &> /dev/null; then
-  echo "MongoDB is required. Install from https://www.mongodb.com/"
-  exit 1
-fi
+echo "[2/3] Installing frontend dependencies..."
+(cd frontend && npm ci)
 
-# Install backend deps
-echo "[1/4] Installing backend dependencies..."
-cd server && npm install && cd ..
-
-# Install + build frontend
-echo "[2/4] Installing frontend dependencies..."
-cd frontend && npm install
-
-echo "[3/4] Building frontend..."
-npm run build && cd ..
-
-# Seed database
-echo "[4/4] Seeding database..."
-cd server && node seed.js && cd ..
+echo "[3/3] Building frontend..."
+(cd frontend && npm run build)
 
 echo ""
-echo "=== Starting server on http://localhost:4000 ==="
-node server/index.js
+echo "=== Starting server on http://localhost:${PORT:-4000} ==="
+exec node server/index.js
