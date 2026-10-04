@@ -52,7 +52,6 @@ export default function LessonPage() {
   const [depthLevel, setDepthLevel] = useState(0);
 
   useEffect(() => {
-    setDepthLevel(0);
     getLesson(id).then(setLesson).catch(() => {}).finally(() => setLoading(false));
   }, [id]);
 

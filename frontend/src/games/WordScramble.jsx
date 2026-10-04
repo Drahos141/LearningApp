@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { shuffle } from '../utils/shuffle';
 
 const WORDS = ['python','network','biology','history','algebra','science','grammar','culture','climate','quantum'];
 
 function scramble(w) {
   let s = w.split('');
-  do { s.sort(() => Math.random() - 0.5); } while (s.join('') === w);
+  do { s = shuffle(s); } while (s.join('') === w);
   return s.join('').toUpperCase();
 }
 

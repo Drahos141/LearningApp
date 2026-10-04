@@ -1,85 +1,101 @@
 # 🎓 LearningApp
 
-A full-stack learning platform with a React frontend and C# ASP.NET Core backend.
+A learning platform with lessons, quizzes, flashcards and brain-training games.
+React frontend + Node/Express API, shipped as a single container.
+
+## Quick start (one container)
+
+```bash
+docker compose up --build
+```
+
+Open **http://localhost:4000**. That's it — no database required.
+
+Without Compose:
+
+```bash
+docker build -t learningapp .
+docker run --rm -p 4000:4000 learningapp
+```
 
 ## Features
 
-- **7 Learning Categories**: IT, Programming, Languages, Networking, AI & ML, Soft Skills, Hardware
-- **14 Subcategories** with 3 lessons each (42 lessons total)
-- **Quizzes**: 3 multiple-choice questions per lesson with explanations (126 total)
-- **Flashcard Mini-Games**: 5 term-definition flashcards per lesson
-- Clean dark-mode dashboard with category cards
-- Lesson reader, interactive quiz, and flip-card game
+- **7 categories**: IT, Programming, Mathematics, Science, History, Languages, Psychology
+- **25 subcategories, 49 lessons**, each with "Go Deeper" levels, a quiz and flashcards
+- **34 brain games**: memory, logic, sequence, word, math, pattern and spatial puzzles
 
-## Tech Stack
+## Tech stack
 
-| Layer    | Technology               |
-|----------|--------------------------|
-| Frontend | React 19 + Vite + React Router |
-| Backend  | C# ASP.NET Core 10 Web API |
-| Data     | In-memory seeded data    |
+| Layer    | Technology                                   |
+|----------|----------------------------------------------|
+| Frontend | React 19, Vite 8, React Router 7             |
+| Server   | Node 24, Express — serves the API and the built frontend |
+| Data     | Bundled in `server/content.js` and `server/lessons-json/`, served from memory. MongoDB optional. |
 
-## Getting Started
+## Local development
 
-### Prerequisites
-
-- [.NET 10 SDK](https://dotnet.microsoft.com/download)
-- [Node.js 20+](https://nodejs.org/)
-
-### 1. Start the Backend
+Prerequisites: [Node.js 22.12+](https://nodejs.org/) (24 recommended).
 
 ```bash
-cd backend/LearningApp.API
-dotnet run
+# Terminal 1 — API on http://localhost:4000
+cd server && npm ci && npm run dev
+
+# Terminal 2 — frontend with hot reload on http://localhost:5175 (proxies /api to :4000)
+cd frontend && npm ci && npm run dev
 ```
 
-The API will be available at **http://localhost:5000**  
-Swagger UI: http://localhost:5000/swagger
+Or build and serve everything from one process: `./start.sh`.
 
-### 2. Start the Frontend
+### Configuration
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+| Variable     | Default                | Purpose |
+|--------------|------------------------|---------|
+| `PORT`       | `4000`                 | Server port |
+| `MONGO_URI`  | _(unset)_              | If set, content is loaded from MongoDB instead of the bundled files |
+| `SEED_DB`    | _(unset)_              | With `MONGO_URI`, `true` copies the bundled content into MongoDB on startup |
+| `STATIC_DIR` | `../frontend/dist`     | Built frontend to serve |
+| `API_URL`    | `http://localhost:4000`| (Vite dev server) where to proxy `/api` |
 
-The app will be available at **http://localhost:5175**
+Content is loaded once at startup — restart the server after editing it.
 
-### 3. Run With Docker Compose
+## Adding content
 
-```bash
-docker compose up -d --build
-```
+- **Lessons via JSON** (Psychology): drop a file into `server/lessons-json/` — see its [README](server/lessons-json/README.md).
+- **Other lessons and games**: edit `server/content.js`. Each game's `slug` must match an entry in `GAME_COMPONENTS` in `frontend/src/pages/GamePlay.jsx`.
 
-The frontend will be available at **http://localhost:5175**
-The Node API will be available at **http://localhost:4000**
-The ASP.NET Core API will be available at **http://localhost:5000**
-
-## API Endpoints
+## API
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/categories` | All categories with subcategories |
+| GET | `/api/health` | Health check |
+| GET | `/api/categories` | All categories with subcategories and lesson outlines |
 | GET | `/api/categories/{id}` | Single category |
+| GET | `/api/subcategories/{id}/lessons` | Full lessons in a subcategory |
 | GET | `/api/lessons/{id}` | Single lesson |
-| GET | `/api/subcategories/{id}/lessons` | Lessons in a subcategory |
-| GET | `/api/lessons/{lessonId}/quiz` | Quiz for a lesson |
-| GET | `/api/lessons/{lessonId}/minigame` | Flashcard game for a lesson |
+| GET | `/api/lessons/{id}/quiz` | Quiz for a lesson |
+| GET | `/api/lessons/{id}/minigame` | Flashcards for a lesson |
+| GET | `/api/games` | All brain games |
+| GET | `/api/games/{id or slug}` | Single game |
 
-## Project Structure
+## Project structure
 
 ```
 LearningApp/
-├── backend/
-│   └── LearningApp.API/
-│       ├── Controllers/     # API controllers
-│       ├── Models/          # Data models
-│       ├── Services/        # DataService with seeded content
-│       └── Program.cs
-└── frontend/
-    └── src/
-        ├── api/             # Axios API client
-        ├── pages/           # Dashboard, Category, Lesson, Quiz, MiniGame
-        └── index.css        # Global styles
+├── Dockerfile             # Single-container build (frontend + server)
+├── docker-compose.yml
+├── server/
+│   ├── index.js           # Express app: API + static frontend
+│   ├── store.js           # In-memory content store (optionally loaded from MongoDB)
+│   ├── content.js         # Bundled categories, lessons and games
+│   ├── lessons-json/      # JSON-defined lessons
+│   ├── routes/            # API routes
+│   ├── models/            # Mongoose models (MongoDB mode only)
+│   └── seed.js            # Copy bundled content into MongoDB
+├── frontend/
+│   └── src/
+│       ├── api/           # API client
+│       ├── pages/         # Dashboard, category, lesson, quiz, flashcards, games
+│       ├── games/         # Brain game components
+│       └── utils/
+└── backend/               # Legacy C# ASP.NET Core API (not used by the frontend)
 ```

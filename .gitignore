@@ -54,7 +54,9 @@ TestResult.xml
 nunit-*.xml
 
 # Node / Frontend
-frontend/node_modules/
+node_modules/
 frontend/dist/
-frontend/.env.local
-frontend/.env.*.local
+.env
+.env.local
+.env.*.local
+npm-debug.log*

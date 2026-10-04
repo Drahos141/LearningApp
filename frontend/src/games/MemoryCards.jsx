@@ -1,10 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { shuffle } from '../utils/shuffle';
 
 const EMOJIS = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼'];
-
-function shuffle(arr) {
-  return [...arr].sort(() => Math.random() - 0.5);
-}
 
 function makeCards() {
   return shuffle([...EMOJIS, ...EMOJIS].map((e, i) => ({ id: i, emoji: e, flipped: false, matched: false })));
@@ -14,34 +11,32 @@ export default function MemoryCards() {
   const [cards, setCards] = useState(makeCards);
   const [selected, setSelected] = useState([]);
   const [moves, setMoves] = useState(0);
-  const [won, setWon] = useState(false);
+  const won = cards.every(c => c.matched);
+  const timeoutRef = useRef();
 
-  useEffect(() => {
-    if (selected.length === 2) {
-      const [a, b] = selected;
-      if (cards[a].emoji === cards[b].emoji) {
-        setCards(c => c.map((card, i) => i === a || i === b ? { ...card, matched: true } : card));
-      } else {
-        setTimeout(() => {
-          setCards(c => c.map((card, i) => i === a || i === b ? { ...card, flipped: false } : card));
-        }, 700);
-      }
-      setSelected([]);
-      setMoves(m => m + 1);
-    }
-  }, [selected]);
-
-  useEffect(() => {
-    if (cards.every(c => c.matched)) setWon(true);
-  }, [cards]);
+  useEffect(() => () => clearTimeout(timeoutRef.current), []);
 
   const flip = (i) => {
     if (selected.length === 2 || cards[i].flipped || cards[i].matched) return;
     setCards(c => c.map((card, idx) => idx === i ? { ...card, flipped: true } : card));
-    setSelected(s => [...s, i]);
+    if (selected.length === 0) { setSelected([i]); return; }
+
+    const [a, b] = [selected[0], i];
+    setMoves(m => m + 1);
+    if (cards[a].emoji === cards[b].emoji) {
+      setCards(c => c.map((card, idx) => idx === a || idx === b ? { ...card, matched: true } : card));
+      setSelected([]);
+    } else {
+      // Keep both cards selected (blocking further flips) until they turn back over.
+      setSelected([a, b]);
+      timeoutRef.current = setTimeout(() => {
+        setCards(c => c.map((card, idx) => idx === a || idx === b ? { ...card, flipped: false } : card));
+        setSelected([]);
+      }, 700);
+    }
   };
 
-  const reset = () => { setCards(makeCards()); setSelected([]); setMoves(0); setWon(false); };
+  const reset = () => { clearTimeout(timeoutRef.current); setCards(makeCards()); setSelected([]); setMoves(0); };
 
   if (won) return (
     <div className="game-result">

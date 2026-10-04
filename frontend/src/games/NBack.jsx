@@ -6,7 +6,6 @@ const INTERVAL = 2000;
 
 export default function NBack() {
   const [started, setStarted] = useState(false);
-  const [history, setHistory] = useState([]);
   const [current, setCurrent] = useState(null);
   const [hits, setHits] = useState(0);
   const [misses, setMisses] = useState(0);
@@ -24,7 +23,6 @@ export default function NBack() {
     setCurrent(pos);
     setMatched(false);
     histRef.current = [...histRef.current, pos];
-    setHistory(h => [...h, pos]);
     roundRef.current++;
     setRounds(r => r + 1);
     if (roundRef.current >= total) {

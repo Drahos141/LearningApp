@@ -144,26 +144,24 @@ function PlayerTurn({ player, playerIdx, questions, onDone }) {
     }
   }, [q, qIdx, questions, results, onDone]);
 
-  // Timer
+  const submitRef = useRef(submitAnswer);
+  useEffect(() => { submitRef.current = submitAnswer; }, [submitAnswer]);
+
+  // Timer: counts down from a fixed per-question deadline. Submitting is kept out of
+  // the state updater so StrictMode's double-invoked updaters can't submit twice.
   useEffect(() => {
     if (phase !== 'playing') return;
+    const deadline = Date.now() + TIME_PER_Q * 1000;
     timerRef.current = setInterval(() => {
-      setTimeLeft(t => {
-        if (t <= 1) {
-          submitAnswer('');
-          return TIME_PER_Q;
-        }
-        return t - 1;
-      });
+      const remaining = Math.ceil((deadline - Date.now()) / 1000);
+      if (remaining <= 0) submitRef.current('');
+      else setTimeLeft(remaining);
     }, 1000);
     return () => clearInterval(timerRef.current);
-  }, [phase, qIdx, submitAnswer]);
+  }, [phase, qIdx]);
 
   useEffect(() => {
-    if (phase === 'playing') {
-      setTimeLeft(TIME_PER_Q);
-      inputRef.current?.focus();
-    }
+    if (phase === 'playing') inputRef.current?.focus();
   }, [qIdx, phase]);
 
   if (phase === 'ready') return (

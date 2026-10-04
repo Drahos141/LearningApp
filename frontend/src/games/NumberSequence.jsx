@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { shuffle } from '../utils/shuffle';
 
 const QUESTIONS = [
   { seq: [2, 5, 8, 11, null, 17], answer: 14,
@@ -31,12 +32,12 @@ function makeOptions(answer) {
     answer + 7, answer - 7, answer + 10, answer - 10,
     Math.round(answer * 1.5), Math.round(answer * 0.5),
   ].filter(v => v > 0 && !set.has(v));
-  const shuffled = candidates.sort(() => Math.random() - 0.5);
+  const shuffled = shuffle(candidates);
   for (const c of shuffled) {
     if (set.size >= 4) break;
     set.add(c);
   }
-  return [...set].sort(() => Math.random() - 0.5);
+  return shuffle([...set]);
 }
 
 export default function NumberSequence() {

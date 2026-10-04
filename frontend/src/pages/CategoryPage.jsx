@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getCategory, getLessonsBySubcategory } from '../api/api';
+import { getCategory } from '../api/api';
 
 export default function CategoryPage() {
   const { id } = useParams();
